@@ -1,17 +1,18 @@
+---
 version: 2
 jobs:
-  checkout_code: 
+  checkout_code:
     docker:
-      - image: circleci/elixir:1.5.2
-      - image: circleci/golang:1.8.3
-    steps: 
+      - image: circleci/elixir:1.12.2
+      - image: circleci/golang:1.17
+    steps:
       - checkout
       - run: mix deps.get
 
   go_dependencies:
     docker:
-      - image: circleci/elixir:1.5.2
-      - image: circleci/golang:1.8.2
+      - image: circleci/elixir:1.12.2
+      - image: circleci/golang:1.17
     steps:
       - run:
           name: make ipfs executable
@@ -20,11 +21,11 @@ jobs:
           name: install ipfs
           command: ./install-ipfs.sh  0.4.12-dev .
       - run: ipfs daemon
-    
+
   elixir_tests:
-    docker: 
-      - image: circleci/elixir:1.5.2
-      - image: circleci/golang:1.8.3
+    docker:
+      - image: circleci/elixir:1.12.2
+      - image: circleci/golang:1.17
     steps:
       - run: mix test
 
@@ -34,7 +35,7 @@ workflows:
     jobs:
       - checkout_code
       - go_dependencies
-      - elixir_tests
-        requires:
-          - checkout_code
-          - go_dependencies
+      - elixir_tests:
+          requires:
+            - checkout_code
+            - go_dependencies

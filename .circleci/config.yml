@@ -3,7 +3,7 @@ version: 2
 jobs:
   checkout_code:
     docker:
-      - image: circleci/elixir:1.12.2
+      - image: circleci/elixir:1.12
       - image: circleci/golang:1.17
     steps:
       - checkout
@@ -11,7 +11,7 @@ jobs:
 
   go_dependencies:
     docker:
-      - image: circleci/elixir:1.12.2
+      - image: circleci/elixir:1.12
       - image: circleci/golang:1.17
     steps:
       - run:
@@ -24,7 +24,7 @@ jobs:
 
   elixir_tests:
     docker:
-      - image: circleci/elixir:1.12.2
+      - image: circleci/elixir:1.12
       - image: circleci/golang:1.17
     steps:
       - run: mix test

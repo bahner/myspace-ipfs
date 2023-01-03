@@ -1,0 +1,16 @@
+version: "3"
+services:
+  kubo:
+    image: ipfs/kubo:latest
+    ports:
+      - 4001:4001
+      - 8080:8080
+      - 5001:5001
+    volumes:
+      - .docker_data/ipfs_staging:/export
+      - .docker_data/ipfs_data:/data/ipfs
+      - kubo-data:/export
+      - kubo-data:/data/ipfs
+
+volumes:
+  kubo-data:

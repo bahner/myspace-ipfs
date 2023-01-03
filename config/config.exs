@@ -1,12 +1,21 @@
 import Config
 
-config :tesla,
-  adapter: Tesla.Adapter.Hackney
+case config_env do
+  :dev ->
+    config :tesla,
+      adapter: Tesla.Adapter.Hackney
 
-config :myspace_ipfs,
-  baseurl: "http://localhost:5001/api/v0",
-  experimental: true,
-  deprecated: false,
-  debug: false
+    config :myspace_ipfs,
+      baseurl: "http://localhost:5001/api/v0",
+      debug: true,
+      deprecated: false,
+      experimental: true
 
-import_config "#{Mix.env()}.exs"
+  :test ->
+    config :tesla, Tesla.Middleware.Logger, debug: true
+
+    config :myspace_ipfs,
+      baseurl: "http://localhost:5001/api/v0",
+      debug: true,
+      experimental: true
+end

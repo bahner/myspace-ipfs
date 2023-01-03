@@ -1,6 +1,6 @@
 import Config
 
-case config_env do
+case config_env() do
   :dev ->
     config :tesla,
       adapter: Tesla.Adapter.Hackney

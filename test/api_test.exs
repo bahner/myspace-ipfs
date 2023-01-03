@@ -1,4 +1,4 @@
-defmodule MyspaceIPFSApiTest do
+defmodule MyspaceIPFS.ApiTest do
   @moduledoc """
   Test the MyspaceIPFS API
 
@@ -8,7 +8,6 @@ defmodule MyspaceIPFSApiTest do
   NB! The tests are not mocked. They are designed to be run against a live IPFS node. This is
   """
   use ExUnit.Case, async: true
-
   alias MyspaceIPFS.Api
 
   test "id should return a complete map" do
